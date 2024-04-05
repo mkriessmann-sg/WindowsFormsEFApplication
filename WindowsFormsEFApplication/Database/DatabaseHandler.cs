@@ -43,7 +43,7 @@ public class DatabaseHandler
     public List<Product> GetProducts(QueryObject query)
     {
         //勘違いによって非効率なアルゴリズム
-        //List<Product> _products = context.Products.ToList();
+        List<Product> _products = context.Products.ToList();
 
         //if (query.minPrice != null)
         //{
@@ -69,13 +69,18 @@ public class DatabaseHandler
         //{
         //    _products = _products.Where(p => p.Description.Contains(query.descriptionQuery)).ToList();
         //}
-        List<Product>_products =context.Products.Where(p =>
-        (query.minPrice == null || p.Price >= query.minPrice || p.Price == null) &&
-        (query.maxPrice == null || p.Price <= query.maxPrice || p.Price == null) &&
-        (query.minStock == null || p.stock >= query.minStock || p.stock == null) &&
-        (query.maxStock == null || p.stock >= query.maxStock || p.stock == null) &&
-        (query.nameQuery == null || p.Name == null|| p.Name.Contains(query.nameQuery) &&
-        (query.descriptionQuery == null || p.Description==null ||p.Description.Contains(query.descriptionQuery);)
+
+        ////TODO: Fix algolrythm
+        //IQueryable<Product> products = context.Products.Where(p =>
+        //        (query.minPrice == null || p.Price >= query.minPrice || p.Price == null) &&
+        //        (query.maxPrice == null || p.Price <= query.maxPrice || p.Price == null) &&
+        //        (query.minStock == null || p.stock >= query.minStock || p.stock == null) &&
+        //        (query.maxStock == null || p.stock >= query.maxStock || p.stock == null) &&
+        //        (query.nameQuery == null || p.Name == null || p.Name.Contains(query.nameQuery) &&
+        //        (query.descriptionQuery == null || p.Description == null || p.Description.Contains(query.descriptionQuery));
+
+
+        //List<Product> _products = (List<Product>)products;
 
 
 

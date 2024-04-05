@@ -46,11 +46,9 @@
             textBox5 = new TextBox();
             QueryDescription = new Label();
             QueryName = new Label();
-            textBox6 = new TextBox();
-            menuStrip1 = new MenuStrip();
+            QueryNameBox = new TextBox();
             SortLabel = new Label();
-            toolStripComboBox1 = new ToolStripComboBox();
-            menuStrip1.SuspendLayout();
+            comboBox1 = new ComboBox();
             SuspendLayout();
             // 
             // TsukaButton
@@ -87,6 +85,7 @@
             listView1.Size = new Size(539, 685);
             listView1.TabIndex = 3;
             listView1.UseCompatibleStateImageBehavior = false;
+            listView1.View = View.List;
             // 
             // textBox1
             // 
@@ -164,7 +163,6 @@
             PriceLabel.Size = new Size(33, 15);
             PriceLabel.TabIndex = 12;
             PriceLabel.Text = "Price";
-            PriceLabel.Click += PriceLabel_Click;
             // 
             // textBox3
             // 
@@ -205,45 +203,41 @@
             QueryName.TabIndex = 19;
             QueryName.Text = "Query Name";
             // 
-            // textBox6
+            // QueryNameBox
             // 
-            textBox6.Location = new Point(584, 43);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(177, 23);
-            textBox6.TabIndex = 18;
-            // 
-            // menuStrip1
-            // 
-            menuStrip1.Dock = DockStyle.None;
-            menuStrip1.Items.AddRange(new ToolStripItem[] { toolStripComboBox1 });
-            menuStrip1.Location = new Point(407, 9);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(131, 27);
-            menuStrip1.TabIndex = 20;
-            menuStrip1.Text = "SortMenu";
+            QueryNameBox.Location = new Point(584, 43);
+            QueryNameBox.Name = "QueryNameBox";
+            QueryNameBox.Size = new Size(177, 23);
+            QueryNameBox.TabIndex = 18;
             // 
             // SortLabel
             // 
             SortLabel.AutoSize = true;
-            SortLabel.Location = new Point(343, 18);
+            SortLabel.Location = new Point(380, 17);
             SortLabel.Name = "SortLabel";
             SortLabel.Size = new Size(44, 15);
             SortLabel.TabIndex = 21;
             SortLabel.Text = "Sort by";
             // 
-            // toolStripComboBox1
+            // comboBox1
             // 
-            toolStripComboBox1.Name = "toolStripComboBox1";
-            toolStripComboBox1.Size = new Size(121, 23);
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Stock acending", "stock decending", "price acending", "price decending" });
+            comboBox1.Location = new Point(430, 14);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(121, 23);
+            comboBox1.TabIndex = 22;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(883, 759);
+            Controls.Add(comboBox1);
             Controls.Add(SortLabel);
             Controls.Add(QueryName);
-            Controls.Add(textBox6);
+            Controls.Add(QueryNameBox);
             Controls.Add(QueryDescription);
             Controls.Add(textBox5);
             Controls.Add(PriceLabelMax);
@@ -261,13 +255,9 @@
             Controls.Add(SearchButton);
             Controls.Add(DeleteButton);
             Controls.Add(TsukaButton);
-            Controls.Add(menuStrip1);
-            MainMenuStrip = menuStrip1;
             Name = "Form1";
             Text = "Stock Management System";
             Load += Form1_Load;
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -292,9 +282,8 @@
         private TextBox textBox5;
         private Label QueryDescription;
         private Label QueryName;
-        private TextBox textBox6;
-        private MenuStrip menuStrip1;
+        private TextBox QueryNameBox;
         private Label SortLabel;
-        private ToolStripComboBox toolStripComboBox1;
+        private ComboBox comboBox1;
     }
 }
