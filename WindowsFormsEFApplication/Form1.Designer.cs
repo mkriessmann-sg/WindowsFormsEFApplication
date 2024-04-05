@@ -28,12 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            ListViewItem listViewItem3 = new ListViewItem("One");
+            ListViewItem listViewItem4 = new ListViewItem("Two");
             TsukaButton = new Button();
             DeleteButton = new Button();
             SearchButton = new Button();
             listView1 = new ListView();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            ID = new ColumnHeader();
+            xName = new ColumnHeader();
+            Description = new ColumnHeader();
+            Price = new ColumnHeader();
+            Stock = new ColumnHeader();
+            QueryStockMaxBox = new TextBox();
+            QueryStockMinBox = new TextBox();
             ResetSearchButton = new Button();
             StockLabel = new Label();
             StockMinLabel = new Label();
@@ -41,9 +48,9 @@
             PriceLabelMax = new Label();
             PriceLabelMin = new Label();
             PriceLabel = new Label();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
-            textBox5 = new TextBox();
+            QueryPriceMinBox = new TextBox();
+            QueryPriceMaxBox = new TextBox();
+            QueryDescriptionBox = new TextBox();
             QueryDescription = new Label();
             QueryName = new Label();
             QueryNameBox = new TextBox();
@@ -59,6 +66,7 @@
             TsukaButton.TabIndex = 0;
             TsukaButton.Text = "Add";
             TsukaButton.UseVisualStyleBackColor = true;
+            TsukaButton.Click += TsukaButton_Click;
             // 
             // DeleteButton
             // 
@@ -68,6 +76,7 @@
             DeleteButton.TabIndex = 1;
             DeleteButton.Text = "Delete";
             DeleteButton.UseVisualStyleBackColor = true;
+            DeleteButton.Click += DeleteButton_Click;
             // 
             // SearchButton
             // 
@@ -77,9 +86,15 @@
             SearchButton.TabIndex = 2;
             SearchButton.Text = "Search";
             SearchButton.UseVisualStyleBackColor = true;
+            SearchButton.Click += SearchButton_Click;
             // 
             // listView1
             // 
+            listView1.Columns.AddRange(new ColumnHeader[] { ID, xName, Description, Price, Stock });
+            listView1.FullRowSelect = true;
+            listView1.GridLines = true;
+            listViewItem3.Tag = "One";
+            listView1.Items.AddRange(new ListViewItem[] { listViewItem3, listViewItem4 });
             listView1.Location = new Point(12, 43);
             listView1.Name = "listView1";
             listView1.Size = new Size(539, 685);
@@ -87,19 +102,19 @@
             listView1.UseCompatibleStateImageBehavior = false;
             listView1.View = View.List;
             // 
-            // textBox1
+            // QueryStockMaxBox
             // 
-            textBox1.Location = new Point(686, 250);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(75, 23);
-            textBox1.TabIndex = 4;
+            QueryStockMaxBox.Location = new Point(686, 250);
+            QueryStockMaxBox.Name = "QueryStockMaxBox";
+            QueryStockMaxBox.Size = new Size(75, 23);
+            QueryStockMaxBox.TabIndex = 4;
             // 
-            // textBox2
+            // QueryStockMinBox
             // 
-            textBox2.Location = new Point(584, 250);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(75, 23);
-            textBox2.TabIndex = 5;
+            QueryStockMinBox.Location = new Point(584, 250);
+            QueryStockMinBox.Name = "QueryStockMinBox";
+            QueryStockMinBox.Size = new Size(75, 23);
+            QueryStockMinBox.TabIndex = 5;
             // 
             // ResetSearchButton
             // 
@@ -109,6 +124,7 @@
             ResetSearchButton.TabIndex = 6;
             ResetSearchButton.Text = "ResetQuery";
             ResetSearchButton.UseVisualStyleBackColor = true;
+            ResetSearchButton.Click += ResetSearchButton_Click;
             // 
             // StockLabel
             // 
@@ -164,26 +180,26 @@
             PriceLabel.TabIndex = 12;
             PriceLabel.Text = "Price";
             // 
-            // textBox3
+            // QueryPriceMinBox
             // 
-            textBox3.Location = new Point(582, 174);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(75, 23);
-            textBox3.TabIndex = 11;
+            QueryPriceMinBox.Location = new Point(582, 174);
+            QueryPriceMinBox.Name = "QueryPriceMinBox";
+            QueryPriceMinBox.Size = new Size(75, 23);
+            QueryPriceMinBox.TabIndex = 11;
             // 
-            // textBox4
+            // QueryPriceMaxBox
             // 
-            textBox4.Location = new Point(684, 174);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(75, 23);
-            textBox4.TabIndex = 10;
+            QueryPriceMaxBox.Location = new Point(684, 174);
+            QueryPriceMaxBox.Name = "QueryPriceMaxBox";
+            QueryPriceMaxBox.Size = new Size(75, 23);
+            QueryPriceMaxBox.TabIndex = 10;
             // 
-            // textBox5
+            // QueryDescriptionBox
             // 
-            textBox5.Location = new Point(584, 103);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(177, 23);
-            textBox5.TabIndex = 16;
+            QueryDescriptionBox.Location = new Point(584, 103);
+            QueryDescriptionBox.Name = "QueryDescriptionBox";
+            QueryDescriptionBox.Size = new Size(177, 23);
+            QueryDescriptionBox.TabIndex = 16;
             // 
             // QueryDescription
             // 
@@ -239,18 +255,18 @@
             Controls.Add(QueryName);
             Controls.Add(QueryNameBox);
             Controls.Add(QueryDescription);
-            Controls.Add(textBox5);
+            Controls.Add(QueryDescriptionBox);
             Controls.Add(PriceLabelMax);
             Controls.Add(PriceLabelMin);
             Controls.Add(PriceLabel);
-            Controls.Add(textBox3);
-            Controls.Add(textBox4);
+            Controls.Add(QueryPriceMinBox);
+            Controls.Add(QueryPriceMaxBox);
             Controls.Add(StockMaxLabel);
             Controls.Add(StockMinLabel);
             Controls.Add(StockLabel);
             Controls.Add(ResetSearchButton);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(QueryStockMinBox);
+            Controls.Add(QueryStockMaxBox);
             Controls.Add(listView1);
             Controls.Add(SearchButton);
             Controls.Add(DeleteButton);
@@ -268,8 +284,8 @@
         private Button DeleteButton;
         private Button SearchButton;
         private ListView listView1;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox QueryStockMaxBox;
+        private TextBox QueryStockMinBox;
         private Button ResetSearchButton;
         private Label StockLabel;
         private Label StockMinLabel;
@@ -277,13 +293,18 @@
         private Label PriceLabelMax;
         private Label PriceLabelMin;
         private Label PriceLabel;
-        private TextBox textBox3;
-        private TextBox textBox4;
-        private TextBox textBox5;
+        private TextBox QueryPriceMinBox;
+        private TextBox QueryPriceMaxBox;
+        private TextBox QueryDescriptionBox;
         private Label QueryDescription;
         private Label QueryName;
         private TextBox QueryNameBox;
         private Label SortLabel;
         private ComboBox comboBox1;
+        private ColumnHeader ID;
+        private ColumnHeader xName;
+        private ColumnHeader Description;
+        private ColumnHeader Price;
+        private ColumnHeader Stock;
     }
 }

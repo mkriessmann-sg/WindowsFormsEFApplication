@@ -30,9 +30,9 @@ public class DatabaseHandler
         }
     }
 
-    public void DeleteProduct(Product product)
+    public void DeleteProduct(int productID)
     {
-        var productToDelete = context.Products.FirstOrDefault(p => p.Id == product.Id);
+        var productToDelete = context.Products.FirstOrDefault(p => p.Id == productID);
         if (productToDelete != null)
         {
             context.Products.Remove(productToDelete);
@@ -42,33 +42,35 @@ public class DatabaseHandler
 
     public List<Product> GetProducts(QueryObject query)
     {
+
+        //TODO: fix query
         //勘違いによって非効率なアルゴリズム
         List<Product> _products = context.Products.ToList();
 
-        //if (query.minPrice != null)
-        //{
-        //    _products = _products.Where(p => p.Price >= query.minPrice).ToList();
-        //}
-        //if (query.maxPrice != null)
-        //{
-        //    _products = _products.Where(p => p.Price <= query.maxPrice).ToList();
-        //}
-        //if (query.minStock != null)
-        //{
-        //    _products = _products.Where(p => p.stock >= query.minStock).ToList();
-        //}
-        //if (query.maxStock != null)
-        //{
-        //    _products = _products.Where(p => p.stock <= query.minStock).ToList();
-        //}
-        //if (query.nameQuery != null)
-        //{
-        //    _products = _products.Where(p => p.Name.Contains(query.nameQuery)).ToList();
-        //}
-        //if (query.descriptionQuery != null)
-        //{
-        //    _products = _products.Where(p => p.Description.Contains(query.descriptionQuery)).ToList();
-        //}
+        if (query.minPrice != null)
+        {
+            _products = _products.Where(p => p.Price >= query.minPrice).ToList();
+        }
+        if (query.maxPrice != null)
+        {
+            _products = _products.Where(p => p.Price <= query.maxPrice).ToList();
+        }
+        if (query.minStock != null)
+        {
+            _products = _products.Where(p => p.stock >= query.minStock).ToList();
+        }
+        if (query.maxStock != null)
+        {
+            _products = _products.Where(p => p.stock <= query.minStock).ToList();
+        }
+        if (query.nameQuery != null)
+        {
+            _products = _products.Where(p => p.Name.Contains(query.nameQuery)).ToList();
+        }
+        if (query.descriptionQuery != null)
+        {
+            _products = _products.Where(p => p.Description.Contains(query.descriptionQuery)).ToList();
+        }
 
         ////TODO: Fix algolrythm
         //IQueryable<Product> products = context.Products.Where(p =>
@@ -85,6 +87,28 @@ public class DatabaseHandler
 
 
         return _products;
+    }
+
+    //ChatGPT 
+    public int GetFirstAvailableId()
+    {
+        
+        
+            // Get the maximum ID currently in use
+            int maxIdInUse = context.Products.Any() ? context.Products.Max(p => p.Id) : 0;
+
+            // Check for the first gap in the sequence of IDs
+            for (int i = 1; i <= maxIdInUse + 1; i++)
+            {
+                if (!context.Products.Any(p => p.Id == i))
+                {
+                    return i;
+                }
+            }
+
+            // If no gap is found, return the next ID after the maximum ID
+            return maxIdInUse + 1;
+        
     }
 
 }

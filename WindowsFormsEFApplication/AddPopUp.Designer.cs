@@ -36,7 +36,7 @@
             AddPriceTextBox = new TextBox();
             AddStockTextBox = new TextBox();
             AddDescriptionTextBox = new TextBox();
-            PopUpButton = new Button();
+            PopUpCancelButton = new Button();
             PopUpAddButton = new Button();
             SuspendLayout();
             // 
@@ -104,14 +104,15 @@
             AddDescriptionTextBox.Size = new Size(100, 23);
             AddDescriptionTextBox.TabIndex = 7;
             // 
-            // PopUpButton
+            // PopUpCancelButton
             // 
-            PopUpButton.Location = new Point(59, 275);
-            PopUpButton.Name = "PopUpButton";
-            PopUpButton.Size = new Size(75, 23);
-            PopUpButton.TabIndex = 8;
-            PopUpButton.Text = "Cancel";
-            PopUpButton.UseVisualStyleBackColor = true;
+            PopUpCancelButton.Location = new Point(59, 275);
+            PopUpCancelButton.Name = "PopUpCancelButton";
+            PopUpCancelButton.Size = new Size(75, 23);
+            PopUpCancelButton.TabIndex = 8;
+            PopUpCancelButton.Text = "Cancel";
+            PopUpCancelButton.UseVisualStyleBackColor = true;
+            PopUpCancelButton.Click += PopUpButton_Click;
             // 
             // PopUpAddButton
             // 
@@ -121,6 +122,7 @@
             PopUpAddButton.TabIndex = 9;
             PopUpAddButton.Text = "Add";
             PopUpAddButton.UseVisualStyleBackColor = true;
+            PopUpAddButton.Click += PopUpAddButton_Click;
             // 
             // AddPopUp
             // 
@@ -128,7 +130,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(309, 359);
             Controls.Add(PopUpAddButton);
-            Controls.Add(PopUpButton);
+            Controls.Add(PopUpCancelButton);
             Controls.Add(AddDescriptionTextBox);
             Controls.Add(AddStockTextBox);
             Controls.Add(AddPriceTextBox);
@@ -153,7 +155,7 @@
         private TextBox AddPriceTextBox;
         private TextBox AddStockTextBox;
         private TextBox AddDescriptionTextBox;
-        private Button PopUpButton;
+        private Button PopUpCancelButton;
         private Button PopUpAddButton;
     }
 }
