@@ -55,7 +55,7 @@
             QueryName = new Label();
             QueryNameBox = new TextBox();
             SortLabel = new Label();
-            comboBox1 = new ComboBox();
+            OrderSelect = new ComboBox();
             WarningLabelPrice = new Label();
             WarningLabelStock = new Label();
             EditButton = new Button();
@@ -260,15 +260,16 @@
             SortLabel.TabIndex = 21;
             SortLabel.Text = "Sort by";
             // 
-            // comboBox1
+            // OrderSelect
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Stock acending", "stock decending", "price acending", "price decending" });
-            comboBox1.Location = new Point(430, 17);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(121, 23);
-            comboBox1.TabIndex = 22;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            OrderSelect.FormattingEnabled = true;
+            OrderSelect.ImeMode = ImeMode.Disable;
+            OrderSelect.Items.AddRange(new object[] { "ID", "Name", "Stock acending", "stock decending", "price acending", "price decending" });
+            OrderSelect.Location = new Point(430, 17);
+            OrderSelect.Name = "OrderSelect";
+            OrderSelect.Size = new Size(121, 23);
+            OrderSelect.TabIndex = 22;
+            OrderSelect.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // WarningLabelPrice
             // 
@@ -310,7 +311,7 @@
             Controls.Add(EditButton);
             Controls.Add(WarningLabelStock);
             Controls.Add(WarningLabelPrice);
-            Controls.Add(comboBox1);
+            Controls.Add(OrderSelect);
             Controls.Add(SortLabel);
             Controls.Add(QueryName);
             Controls.Add(QueryNameBox);
@@ -360,7 +361,7 @@
         private Label QueryName;
         private TextBox QueryNameBox;
         private Label SortLabel;
-        private ComboBox comboBox1;
+        private ComboBox OrderSelect;
         private ColumnHeader xName;
         private ColumnHeader Description;
         private ColumnHeader Price;

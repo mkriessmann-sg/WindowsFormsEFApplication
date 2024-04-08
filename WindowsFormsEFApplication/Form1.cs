@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace WindowsFormsEFApplication
 {
     public partial class Form1 : Form
@@ -28,7 +30,7 @@ namespace WindowsFormsEFApplication
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            orderIndex = comboBox1.SelectedIndex;
+            UpdateList();
         }
 
 
@@ -39,6 +41,7 @@ namespace WindowsFormsEFApplication
             
             DatabaseHandler databaseHandler = new DatabaseHandler();
             currentProducts = databaseHandler.GetProducts(query);
+            currentProducts = ChangeOrder(currentProducts);
             listView1.Clear();
             listView1.Columns.Add("Id");
             listView1.Columns.Add("Name");
@@ -58,6 +61,7 @@ namespace WindowsFormsEFApplication
 
                 listView1.Items.Add(item);
             }
+            
             listView1.Refresh();
         }
 
@@ -192,5 +196,29 @@ namespace WindowsFormsEFApplication
             editPopup.ShowDialog();
             UpdateList();
         }
+
+        private List<Product> ChangeOrder(List<Product> products)
+        {
+            string sortby = OrderSelect.Text;
+            switch (sortby)
+            {
+                case "ID":
+                    return products.OrderBy(products => products.Id).ToList();
+                case "Name":
+                    return products.OrderBy(products => products.Name).ToList();
+                case "price acending":
+                    return products.OrderBy(products => products.Price).ToList();
+                case "price decending":
+                    return products.OrderByDescending(products => products.Price).ToList();
+                case "Stock acending":
+                    return products.OrderBy(products => products.stock).ToList();
+                case "stock decending":
+                    return products.OrderByDescending(products => products.stock).ToList();
+                default:
+                    return products.OrderBy(products => products.Id).ToList();
+
+            }
+        }
+
     }
 }
