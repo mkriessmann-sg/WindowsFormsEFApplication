@@ -38,6 +38,8 @@
             AddDescriptionTextBox = new TextBox();
             PopUpCancelButton = new Button();
             PopUpAddButton = new Button();
+            PopupPriceWarning = new Label();
+            PopupStockWarning = new Label();
             SuspendLayout();
             // 
             // label1
@@ -124,11 +126,35 @@
             PopUpAddButton.UseVisualStyleBackColor = true;
             PopUpAddButton.Click += PopUpAddButton_Click;
             // 
+            // PopupPriceWarning
+            // 
+            PopupPriceWarning.AutoSize = true;
+            PopupPriceWarning.ForeColor = Color.Red;
+            PopupPriceWarning.Location = new Point(165, 137);
+            PopupPriceWarning.Name = "PopupPriceWarning";
+            PopupPriceWarning.Size = new Size(141, 15);
+            PopupPriceWarning.TabIndex = 10;
+            PopupPriceWarning.Text = "Please enter valid integer!";
+            PopupPriceWarning.Visible = false;
+            // 
+            // PopupStockWarning
+            // 
+            PopupStockWarning.AutoSize = true;
+            PopupStockWarning.ForeColor = Color.Red;
+            PopupStockWarning.Location = new Point(165, 188);
+            PopupStockWarning.Name = "PopupStockWarning";
+            PopupStockWarning.Size = new Size(141, 15);
+            PopupStockWarning.TabIndex = 11;
+            PopupStockWarning.Text = "Please enter valid integer!";
+            PopupStockWarning.Visible = false;
+            // 
             // AddPopUp
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(309, 359);
+            Controls.Add(PopupStockWarning);
+            Controls.Add(PopupPriceWarning);
             Controls.Add(PopUpAddButton);
             Controls.Add(PopUpCancelButton);
             Controls.Add(AddDescriptionTextBox);
@@ -157,5 +183,7 @@
         private TextBox AddDescriptionTextBox;
         private Button PopUpCancelButton;
         private Button PopUpAddButton;
+        private Label PopupPriceWarning;
+        private Label PopupStockWarning;
     }
 }

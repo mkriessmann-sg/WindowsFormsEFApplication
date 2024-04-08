@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ListViewItem listViewItem3 = new ListViewItem("One");
-            ListViewItem listViewItem4 = new ListViewItem("Two");
+            ListViewItem listViewItem1 = new ListViewItem("One");
+            ListViewItem listViewItem2 = new ListViewItem("Two");
             TsukaButton = new Button();
             DeleteButton = new Button();
             SearchButton = new Button();
@@ -56,6 +56,9 @@
             QueryNameBox = new TextBox();
             SortLabel = new Label();
             comboBox1 = new ComboBox();
+            WarningLabelPrice = new Label();
+            WarningLabelStock = new Label();
+            EditButton = new Button();
             SuspendLayout();
             // 
             // TsukaButton
@@ -90,17 +93,39 @@
             // 
             // listView1
             // 
+            listView1.AllowColumnReorder = true;
             listView1.Columns.AddRange(new ColumnHeader[] { ID, xName, Description, Price, Stock });
             listView1.FullRowSelect = true;
             listView1.GridLines = true;
-            listViewItem3.Tag = "One";
-            listView1.Items.AddRange(new ListViewItem[] { listViewItem3, listViewItem4 });
+            listViewItem1.Tag = "One";
+            listView1.Items.AddRange(new ListViewItem[] { listViewItem1, listViewItem2 });
             listView1.Location = new Point(12, 43);
+            listView1.MultiSelect = false;
             listView1.Name = "listView1";
             listView1.Size = new Size(539, 685);
             listView1.TabIndex = 3;
             listView1.UseCompatibleStateImageBehavior = false;
-            listView1.View = View.List;
+            listView1.View = View.Details;
+            // 
+            // ID
+            // 
+            ID.Text = "ID";
+            // 
+            // xName
+            // 
+            xName.Text = "Name";
+            // 
+            // Description
+            // 
+            Description.Text = "Description";
+            // 
+            // Price
+            // 
+            Price.Text = "Price";
+            // 
+            // Stock
+            // 
+            Stock.Text = "Stock";
             // 
             // QueryStockMaxBox
             // 
@@ -239,17 +264,52 @@
             // 
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "Stock acending", "stock decending", "price acending", "price decending" });
-            comboBox1.Location = new Point(430, 14);
+            comboBox1.Location = new Point(430, 17);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(121, 23);
             comboBox1.TabIndex = 22;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
+            // WarningLabelPrice
+            // 
+            WarningLabelPrice.AutoSize = true;
+            WarningLabelPrice.ForeColor = Color.Red;
+            WarningLabelPrice.Location = new Point(603, 200);
+            WarningLabelPrice.Name = "WarningLabelPrice";
+            WarningLabelPrice.Size = new Size(144, 15);
+            WarningLabelPrice.TabIndex = 23;
+            WarningLabelPrice.Text = "Please enter only integers!";
+            WarningLabelPrice.Visible = false;
+            // 
+            // WarningLabelStock
+            // 
+            WarningLabelStock.AutoSize = true;
+            WarningLabelStock.ForeColor = Color.Red;
+            WarningLabelStock.Location = new Point(605, 276);
+            WarningLabelStock.Name = "WarningLabelStock";
+            WarningLabelStock.Size = new Size(144, 15);
+            WarningLabelStock.TabIndex = 24;
+            WarningLabelStock.Text = "Please enter only integers!";
+            WarningLabelStock.Visible = false;
+            // 
+            // EditButton
+            // 
+            EditButton.Location = new Point(782, 654);
+            EditButton.Name = "EditButton";
+            EditButton.Size = new Size(75, 23);
+            EditButton.TabIndex = 25;
+            EditButton.Text = "Edit";
+            EditButton.UseVisualStyleBackColor = true;
+            EditButton.Click += EditButton_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(883, 759);
+            Controls.Add(EditButton);
+            Controls.Add(WarningLabelStock);
+            Controls.Add(WarningLabelPrice);
             Controls.Add(comboBox1);
             Controls.Add(SortLabel);
             Controls.Add(QueryName);
@@ -301,10 +361,13 @@
         private TextBox QueryNameBox;
         private Label SortLabel;
         private ComboBox comboBox1;
-        private ColumnHeader ID;
         private ColumnHeader xName;
         private ColumnHeader Description;
         private ColumnHeader Price;
         private ColumnHeader Stock;
+        private Label WarningLabelPrice;
+        private Label WarningLabelStock;
+        public ColumnHeader ID;
+        private Button EditButton;
     }
 }

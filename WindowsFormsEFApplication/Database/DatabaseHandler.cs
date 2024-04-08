@@ -19,17 +19,6 @@ public class DatabaseHandler
         context.SaveChanges();
     }
 
-    //TODO:Plan and implement update function
-    public void UpdateProductDescription()
-    {
-        var productToUpdate = context.Products.FirstOrDefault(p => p.Name == "Product A");
-        if (productToUpdate != null)
-        {
-            productToUpdate.Description = "Updated description";
-            context.SaveChanges();
-        }
-    }
-
     public void DeleteProduct(int productID)
     {
         var productToDelete = context.Products.FirstOrDefault(p => p.Id == productID);
@@ -39,11 +28,14 @@ public class DatabaseHandler
             context.SaveChanges();
         }
     }
-
+    public Product GetProductById(int productID)
+    {
+        return context.Products.FirstOrDefault(x => x.Id == productID);
+    }
     public List<Product> GetProducts(QueryObject query)
     {
 
-        //TODO: fix query
+        //TODO: make this more elegant
         //勘違いによって非効率なアルゴリズム
         List<Product> _products = context.Products.ToList();
 
@@ -111,5 +103,17 @@ public class DatabaseHandler
         
     }
 
+    public void UpdateEntrybyID(Product product)
+    {
+        var productToUpdate = context.Products.FirstOrDefault(p => p.Id == product.Id);
+        if (productToUpdate != null)
+        {
+            productToUpdate.Name = product.Name;
+            productToUpdate.Description = product.Description;
+            productToUpdate.Price = product.Price;
+            productToUpdate.stock = product.stock;
+            context.SaveChanges();
+        }
+    }
 }
 
